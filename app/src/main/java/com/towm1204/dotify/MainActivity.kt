@@ -9,6 +9,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
     private var plays: Int = Random.nextInt(100, 1000)
+    private var changingUser: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,6 +27,29 @@ class MainActivity : AppCompatActivity() {
         ibNextSong.setOnClickListener{
             nextClicked()
         }
+
+        btnChangeUser.setOnClickListener{
+            changeUser()
+        }
+    }
+
+    private fun changeUser() {
+        if (!changingUser) {
+            btnChangeUser.text = "Apply"
+            tvUsername.visibility = View.INVISIBLE
+            etNewUsername.visibility = View.VISIBLE
+            changingUser = true
+        } else {
+            if (etNewUsername.text.isNotEmpty()) {
+                val newUsername = etNewUsername.text.toString()
+                tvUsername.text = newUsername
+                btnChangeUser.text = "Change User"
+                tvUsername.visibility = View.VISIBLE
+                etNewUsername.visibility = View.INVISIBLE
+                changingUser = false
+            }
+        }
+
     }
 
     private fun playClicked() {

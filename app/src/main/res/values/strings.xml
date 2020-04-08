@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Dotify</string>
+    <string name="default_username">towm1204</string>
+    <string name="new_username_hint">New Username</string>
+    <string name="btnChangeUser_text">Change User</string>
+    <string name="album_name">Eternal Atake Deluxe</string>
+    <string name="track_name">Got The Guap</string>
+    <string name="track_artist">Lil Uzi Vert featuring Young Thug</string>
+    <string name="plays_placeholder">1217 plays</string>
+    <string name="play_button_cd">Play Button</string>
+    <string name="prev_song_cd">Previous Button</string>
+    <string name="next_song_cd">Next Button</string>
 </resources>

@@ -12,24 +12,38 @@
         android:id="@+id/tvUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="towm1204"
-        android:textSize="20dp"
+        android:text="@string/default_username"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/btnChangeUser"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/btnChangeUser" />
 
+    <EditText
+        android:id="@+id/etNewUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/new_username_hint"
+        android:textSize="20sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@id/btnChangeUser"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/btnChangeUser" />
+
     <Button
         android:id="@+id/btnChangeUser"
         android:layout_width="117dp"
-        android:layout_height="0dp"
-        android:text="Chang User"
+        android:layout_height="wrap_content"
+        android:text="@string/btnChangeUser_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
+        android:contentDescription="@string/album_name"
         android:id="@+id/ivAlbumArt"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnChangeUser"
@@ -39,8 +53,8 @@
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Got The Guap"
-        android:textSize="30dp"
+        android:text="@string/track_name"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -50,7 +64,7 @@
         android:id="@+id/tvArtist"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Lil Uzi Vert featuring Young Thug"
+        android:text="@string/track_artist"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvTitle"
@@ -62,13 +76,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="1217 plays"
+        android:text="@string/plays_placeholder"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvArtist" />
 
     <ImageButton
         android:id="@+id/ibPlayButton"
+        android:contentDescription="@string/play_button_cd"
         android:layout_width="96dp"
         android:layout_height="91dp"
         android:background="@null"
@@ -80,6 +95,7 @@
 
     <ImageButton
         android:id="@+id/ibPrevSong"
+        android:contentDescription="@string/prev_song_cd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -91,6 +107,7 @@
 
     <ImageButton
         android:id="@+id/ibNextSong"
+        android:contentDescription="@string/next_song_cd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
@@ -100,7 +117,6 @@
         app:layout_constraintTop_toTopOf="@+id/ibPlayButton"
         app:layout_constraintVertical_bias="0.488"
         app:srcCompat="@drawable/ic_next" />
-    el
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
