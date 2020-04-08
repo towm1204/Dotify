@@ -23,26 +23,29 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="@string/new_username_hint"
+        android:inputType="text"
         android:textSize="20sp"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@id/btnChangeUser"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/btnChangeUser" />
+        app:layout_constraintTop_toTopOf="@id/btnChangeUser"
+        android:importantForAutofill="no" />
 
     <Button
         android:id="@+id/btnChangeUser"
-        android:layout_width="117dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/btnChangeUser_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:contentDescription="@string/album_name"
         android:id="@+id/ivAlbumArt"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
+        android:contentDescription="@string/album_name"
+        app:layout_constraintBottom_toTopOf="@+id/guideline3"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -56,9 +59,8 @@
         android:text="@string/track_name"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivAlbumArt" />
+        app:layout_constraintTop_toTopOf="@+id/guideline3" />
 
     <TextView
         android:id="@+id/tvArtist"
@@ -75,22 +77,22 @@
         android:id="@+id/tvNoPlays"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:text="@string/plays_placeholder"
+        app:layout_constraintBottom_toTopOf="@+id/guideline4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvArtist" />
 
     <ImageButton
         android:id="@+id/ibPlayButton"
-        android:contentDescription="@string/play_button_cd"
-        android:layout_width="96dp"
-        android:layout_height="91dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:background="@null"
+        android:contentDescription="@string/play_button_cd"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/ibNextSong"
         app:layout_constraintStart_toEndOf="@+id/ibPrevSong"
-        app:layout_constraintTop_toBottomOf="@+id/tvNoPlays"
+        app:layout_constraintTop_toTopOf="@+id/guideline4"
         app:srcCompat="@drawable/ic_play" />
 
     <ImageButton
@@ -117,6 +119,20 @@
         app:layout_constraintTop_toTopOf="@+id/ibPlayButton"
         app:layout_constraintVertical_bias="0.488"
         app:srcCompat="@drawable/ic_next" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.70" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.85" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
