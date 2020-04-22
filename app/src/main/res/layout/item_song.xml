@@ -11,7 +11,7 @@
         android:id="@+id/ivSongListAlbumArt"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:src="@drawable/eternal_atake_deluxe"
+        tools:src="@drawable/eternal_atake_deluxe"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -25,7 +25,7 @@
         app:layout_constraintStart_toEndOf="@+id/ivSongListAlbumArt"
         app:layout_constraintTop_toTopOf="@+id/ivSongListAlbumArt"
         app:layout_constraintVertical_bias="0.344"
-        tools:text="Got the Guap" />
+        tools:text="Got The Guap" />
 
     <TextView
         android:id="@+id/tvSongListArtist"
@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="@+id/tvSongListTitle"
         app:layout_constraintTop_toBottomOf="@+id/tvSongListTitle"
-        tools:text="Lil Uzi Vert" />
+        tools:text="Lil Uzi Vert ft. Young Thug" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

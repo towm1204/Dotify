@@ -9,6 +9,7 @@ import com.ericchee.songdataprovider.Song
 
 class SongListAdapter(listOfSongs: List<Song>): RecyclerView.Adapter<SongListAdapter.SongViewHolder>() {
     private var listOfSongs = listOfSongs.toList()
+    var onSongClickListener: ((song: Song) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SongListAdapter.SongViewHolder {
         return SongViewHolder(
@@ -33,6 +34,10 @@ class SongListAdapter(listOfSongs: List<Song>): RecyclerView.Adapter<SongListAda
             title.text = song.title
             artist.text = song.artist
             albumArt.setImageResource(song.smallImageID)
+
+            itemView.setOnClickListener {
+                onSongClickListener?.invoke(song)
+            }
         }
     }
 }
