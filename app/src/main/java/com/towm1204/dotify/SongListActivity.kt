@@ -16,7 +16,8 @@ class SongListActivity : AppCompatActivity() {
         title = "All Songs"
 
         // song adapter
-        songAdapter  = SongListAdapter(SongDataProvider.getAllSongs())
+        val listOfSongs = SongDataProvider.getAllSongs().toMutableList()
+        songAdapter  = SongListAdapter(listOfSongs)
 
         // set onclick listener for each song
         songAdapter.onSongClickListener = { someSong: Song ->
@@ -31,6 +32,13 @@ class SongListActivity : AppCompatActivity() {
 //        }
 
         // shuffle button
+        btnShuffle.setOnClickListener{
+            val shuffledList = listOfSongs.apply {
+                shuffle()
+            }
+
+            songAdapter.change(shuffledList)
+        }
 
 
 
