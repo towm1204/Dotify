@@ -2,18 +2,31 @@ package com.towm1204.dotify
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.Toast
+import com.ericchee.songdataprovider.Song
 import kotlin.random.Random
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+    companion object {
+        const val SONG_KEY = "song_key"
+    }
+
     private var plays: Int = Random.nextInt(100, 1000)
-    private var changingUser: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        // get current song from intent and set that song us
+        val currentSong = intent.getParcelableExtra<Song>(SONG_KEY)
+        if (currentSong != null) {
+            ivAlbumArt.setImageResource(currentSong.largeImageID)
+            tvArtist.text = currentSong.artist
+            tvTitle.text = currentSong.title
+        }
+
+        // initialize no of plays
         tvNoPlays.text = "$plays plays"
 
         ibPlayButton.setOnClickListener {
@@ -27,29 +40,6 @@ class MainActivity : AppCompatActivity() {
         ibNextSong.setOnClickListener{
             nextClicked()
         }
-
-        btnChangeUser.setOnClickListener{
-            changeUser()
-        }
-    }
-
-    private fun changeUser() {
-        if (!changingUser) {
-            btnChangeUser.text = "Apply"
-            tvUsername.visibility = View.INVISIBLE
-            etNewUsername.visibility = View.VISIBLE
-            changingUser = true
-        } else {
-            if (etNewUsername.text.isNotEmpty()) {
-                val newUsername = etNewUsername.text.toString()
-                tvUsername.text = newUsername
-                btnChangeUser.text = "Change User"
-                tvUsername.visibility = View.VISIBLE
-                etNewUsername.visibility = View.INVISIBLE
-                changingUser = false
-            }
-        }
-
     }
 
     private fun playClicked() {

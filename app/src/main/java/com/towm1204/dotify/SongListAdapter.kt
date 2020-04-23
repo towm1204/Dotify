@@ -30,7 +30,7 @@ class SongListAdapter(listOfSongs: List<Song>): RecyclerView.Adapter<SongListAda
         listOfSongs = newSongList
         notifyDataSetChanged()
 
-//        // animations
+//        // with animations but can't get it to work yet
 //        val callback = SongDiffCallback(listOfSongs, newSongList)
 //        val diffResult = DiffUtil.calculateDiff(callback)
 //        diffResult.dispatchUpdatesTo(this)
