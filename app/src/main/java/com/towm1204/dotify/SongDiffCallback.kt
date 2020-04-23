@@ -20,7 +20,7 @@ class SongDiffCallback(
 
     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
         val oldSong = oldSongList[oldItemPosition]
-        val newSong = oldSongList[newItemPosition]
+        val newSong = newSongList[newItemPosition]
         return oldSong.title == newSong.title
     }
 }

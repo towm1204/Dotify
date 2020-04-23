@@ -27,6 +27,7 @@ class SongListAdapter(listOfSongs: List<Song>): RecyclerView.Adapter<SongListAda
     }
 
     fun change(newSongList: List<Song>) {
+        // normal one that works
         listOfSongs = newSongList
         notifyDataSetChanged()
 
@@ -35,7 +36,7 @@ class SongListAdapter(listOfSongs: List<Song>): RecyclerView.Adapter<SongListAda
 //        val diffResult = DiffUtil.calculateDiff(callback)
 //        diffResult.dispatchUpdatesTo(this)
 //
-//        // We update the list
+//        // update list of song
 //        listOfSongs = newSongList
     }
 
