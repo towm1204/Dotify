@@ -17,7 +17,6 @@ class SongListAdapter(listOfSongs: List<Song>): RecyclerView.Adapter<SongListAda
             LayoutInflater.from(parent.context).inflate(R.layout.item_song, parent, false)
         )
     }
-
     override fun getItemCount(): Int {
         return listOfSongs.size
     }
@@ -27,17 +26,17 @@ class SongListAdapter(listOfSongs: List<Song>): RecyclerView.Adapter<SongListAda
     }
 
     fun change(newSongList: List<Song>) {
-        // normal one that works
-        listOfSongs = newSongList
-        notifyDataSetChanged()
-
-//        // with animations but can't get it to work yet
-//        val callback = SongDiffCallback(listOfSongs, newSongList)
-//        val diffResult = DiffUtil.calculateDiff(callback)
-//        diffResult.dispatchUpdatesTo(this)
-//
-//        // update list of song
+        // no animations
 //        listOfSongs = newSongList
+//        notifyDataSetChanged()
+
+        // with animations
+        val callback = SongDiffCallback(listOfSongs, newSongList)
+        val diffResult = DiffUtil.calculateDiff(callback)
+        diffResult.dispatchUpdatesTo(this)
+
+        // update list of song
+        listOfSongs = newSongList.toList()
     }
 
     inner class SongViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {

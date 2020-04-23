@@ -28,16 +28,12 @@ class SongListActivity : AppCompatActivity() {
         }
         rvSongList.adapter = songAdapter
 
-        // mini player
-//        if (this::currentSong.isInitialized) {
-//            tvMiniPlayerText.text = currentSong.title
-//        }
-
         // shuffle button
         btnShuffle.setOnClickListener{
             val shuffledList = listOfSongs.apply {
                 shuffle()
             }
+            rvSongList.scrollToPosition(0)
 
             songAdapter.change(shuffledList)
         }
