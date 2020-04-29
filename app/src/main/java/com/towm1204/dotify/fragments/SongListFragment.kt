@@ -1,11 +1,13 @@
 package com.towm1204.dotify.fragments
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.ericchee.songdataprovider.Song
+import com.towm1204.dotify.OnSongClickListener
 
 import com.towm1204.dotify.R
 import com.towm1204.dotify.SongListAdapter
@@ -15,9 +17,17 @@ import kotlinx.android.synthetic.main.activity_song_list.*
 class SongListFragment : Fragment() {
     private lateinit var songAdapter: SongListAdapter
     private var listOfSongs: List<Song>? = null
+    private var onSongClickListener: OnSongClickListener? = null
 
     companion object {
         const val SONG_LIST_ARG = "song_list_arg"
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is OnSongClickListener) {
+            onSongClickListener = context
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,6 +47,9 @@ class SongListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         songAdapter  = SongListAdapter(listOfSongs!!)
+        songAdapter.onSongClickListener = { someSong: Song ->
+            onSongClickListener?.onSongClicked(someSong)
+        }
         rvSongList.adapter = songAdapter
 
     }

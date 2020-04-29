@@ -5,8 +5,10 @@ import android.os.Bundle
 import com.ericchee.songdataprovider.Song
 import com.ericchee.songdataprovider.SongDataProvider
 import com.towm1204.dotify.fragments.SongListFragment
+import kotlinx.android.synthetic.main.activity_song_list.*
 
 class OgMainActivity : AppCompatActivity(), OnSongClickListener {
+    private var currentSong: Song? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,7 +28,8 @@ class OgMainActivity : AppCompatActivity(), OnSongClickListener {
     }
 
     override fun onSongClicked(song: Song) {
-        TODO("Not yet implemented")
+        currentSong = song
+        tvMiniPlayerText.text = currentSong?.title
     }
 }
 
