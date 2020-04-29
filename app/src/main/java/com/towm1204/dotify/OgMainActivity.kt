@@ -5,7 +5,8 @@ import android.os.Bundle
 import com.ericchee.songdataprovider.Song
 import com.ericchee.songdataprovider.SongDataProvider
 import com.towm1204.dotify.fragments.SongListFragment
-import kotlinx.android.synthetic.main.activity_song_list.*
+import kotlinx.android.synthetic.main.activity_og_main.*
+import kotlinx.android.synthetic.main.fragment_song_list.*
 
 class OgMainActivity : AppCompatActivity(), OnSongClickListener {
     private var currentSong: Song? = null
@@ -25,12 +26,18 @@ class OgMainActivity : AppCompatActivity(), OnSongClickListener {
             .add(R.id.fragContainer, songListFrag)
             .commit()
 
+        btnShuffle.setOnClickListener{
+            songListFrag.shuffleSongs()
+        }
+
     }
 
     override fun onSongClicked(song: Song) {
         currentSong = song
         tvMiniPlayerText.text = currentSong?.title
     }
+
+
 }
 
 

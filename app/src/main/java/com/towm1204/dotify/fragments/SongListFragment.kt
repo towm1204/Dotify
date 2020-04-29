@@ -12,11 +12,12 @@ import com.towm1204.dotify.OnSongClickListener
 import com.towm1204.dotify.R
 import com.towm1204.dotify.SongListAdapter
 import kotlinx.android.synthetic.main.activity_song_list.*
+import java.util.Collections.shuffle
 
 
 class SongListFragment : Fragment() {
     private lateinit var songAdapter: SongListAdapter
-    private var listOfSongs: List<Song>? = null
+    private var listOfSongs: MutableList<Song>? = null
     private var onSongClickListener: OnSongClickListener? = null
 
     companion object {
@@ -52,5 +53,13 @@ class SongListFragment : Fragment() {
         }
         rvSongList.adapter = songAdapter
 
+    }
+
+    fun shuffleSongs() {
+        val shuffledList = listOfSongs?.apply {
+            shuffle()
+        }
+        rvSongList.scrollToPosition(0)
+        songAdapter.change(shuffledList!!)
     }
 }
