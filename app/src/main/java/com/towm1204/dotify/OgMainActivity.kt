@@ -2,8 +2,10 @@ package com.towm1204.dotify
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import com.ericchee.songdataprovider.Song
 import com.ericchee.songdataprovider.SongDataProvider
+import com.towm1204.dotify.fragments.NowPlayingFragment
 import com.towm1204.dotify.fragments.SongListFragment
 import kotlinx.android.synthetic.main.activity_og_main.*
 import kotlinx.android.synthetic.main.fragment_song_list.*
@@ -28,6 +30,21 @@ class OgMainActivity : AppCompatActivity(), OnSongClickListener {
 
         btnShuffle.setOnClickListener{
             songListFrag.shuffleSongs()
+        }
+
+        clMiniPlayer.setOnClickListener{
+            if (currentSong != null) {
+                clMiniPlayer.visibility = View.GONE
+                val nowPlayingFrag = NowPlayingFragment()
+                val nowPlayingArgs = Bundle().apply {
+                    this.putParcelable(NowPlayingFragment.NOW_PLAYING_ARG, currentSong)
+                }
+                nowPlayingFrag.arguments = nowPlayingArgs
+                supportFragmentManager
+                    .beginTransaction()
+                    .add(R.id.fragContainer, nowPlayingFrag)
+                    .commit()
+            }
         }
 
     }

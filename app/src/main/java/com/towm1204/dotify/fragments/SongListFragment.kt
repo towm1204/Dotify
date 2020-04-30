@@ -12,7 +12,6 @@ import com.towm1204.dotify.OnSongClickListener
 import com.towm1204.dotify.R
 import com.towm1204.dotify.SongListAdapter
 import kotlinx.android.synthetic.main.activity_song_list.*
-import java.util.Collections.shuffle
 
 
 class SongListFragment : Fragment() {
@@ -35,7 +34,7 @@ class SongListFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         arguments?.let {
-            this.listOfSongs = it.getParcelableArrayList<Song>(SONG_LIST_ARG)?.toMutableList()
+            this.listOfSongs = it.getParcelableArrayList<Song>(SONG_LIST_ARG)
         }
     }
 
