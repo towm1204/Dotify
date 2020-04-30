@@ -23,6 +23,7 @@ class NowPlayingFragment : Fragment() {
         const val NOW_PLAYING_ARG = "now_playing_arg"
         const val OUT_PLAYS = "out_plays"
         const val OUT_SONG = "out_song"
+        val TAG: String = NowPlayingFragment::class.java.simpleName
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
