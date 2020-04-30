@@ -21,19 +21,33 @@ class NowPlayingFragment : Fragment() {
 
     companion object {
         const val NOW_PLAYING_ARG = "now_playing_arg"
+        const val OUT_PLAYS = "out_plays"
+        const val OUT_SONG = "out_song"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        if (savedInstanceState == null) {
+            arguments?.let {
+                val curSong = it.getParcelable<Song>(NOW_PLAYING_ARG)
+                if (curSong != null) {
+                    this.currentSong = curSong
+                }
+            }
 
-        arguments?.let {
-            val curSong = it.getParcelable<Song>(NOW_PLAYING_ARG)
-            if (curSong != null) {
-                this.currentSong = curSong
+            plays = Random.nextInt(100, 1000)
+        } else {
+            with(savedInstanceState) {
+                plays = getInt(OUT_PLAYS)
+                currentSong = getParcelable(OUT_SONG)
             }
         }
+    }
 
-        plays = Random.nextInt(100, 1000)
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putParcelable(OUT_SONG, currentSong)
+        outState.putInt(OUT_PLAYS, plays!!)
+        super.onSaveInstanceState(outState)
     }
 
     private fun playClicked() {

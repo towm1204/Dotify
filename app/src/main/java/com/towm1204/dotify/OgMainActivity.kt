@@ -17,34 +17,40 @@ class OgMainActivity : AppCompatActivity(), OnSongClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_og_main)
 
-        val songListFrag = SongListFragment()
-        val songListArgs = Bundle().apply {
-            val arrayListOfSongs = ArrayList(SongDataProvider.getAllSongs())
-            this.putParcelableArrayList(SongListFragment.SONG_LIST_ARG, arrayListOfSongs)
-        }
-        songListFrag.arguments = songListArgs
-        supportFragmentManager
-            .beginTransaction()
-            .add(R.id.fragContainer, songListFrag)
-            .commit()
+        if (savedInstanceState == null) {
 
-        btnShuffle.setOnClickListener{
-            songListFrag.shuffleSongs()
-        }
-
-        clMiniPlayer.setOnClickListener{
-            if (currentSong != null) {
-                clMiniPlayer.visibility = View.GONE
-                val nowPlayingFrag = NowPlayingFragment()
-                val nowPlayingArgs = Bundle().apply {
-                    this.putParcelable(NowPlayingFragment.NOW_PLAYING_ARG, currentSong)
-                }
-                nowPlayingFrag.arguments = nowPlayingArgs
-                supportFragmentManager
-                    .beginTransaction()
-                    .add(R.id.fragContainer, nowPlayingFrag)
-                    .commit()
+            clMiniPlayer.visibility = View.VISIBLE
+            val songListFrag = SongListFragment()
+            val songListArgs = Bundle().apply {
+                val arrayListOfSongs = ArrayList(SongDataProvider.getAllSongs())
+                this.putParcelableArrayList(SongListFragment.SONG_LIST_ARG, arrayListOfSongs)
             }
+            songListFrag.arguments = songListArgs
+            supportFragmentManager
+                .beginTransaction()
+                .add(R.id.fragContainer, songListFrag)
+                .commit()
+
+            btnShuffle.setOnClickListener {
+                songListFrag.shuffleSongs()
+            }
+
+            clMiniPlayer.setOnClickListener {
+                if (currentSong != null) {
+                    clMiniPlayer.visibility = View.GONE
+                    val nowPlayingFrag = NowPlayingFragment()
+                    val nowPlayingArgs = Bundle().apply {
+                        this.putParcelable(NowPlayingFragment.NOW_PLAYING_ARG, currentSong)
+                    }
+                    nowPlayingFrag.arguments = nowPlayingArgs
+                    supportFragmentManager
+                        .beginTransaction()
+                        .add(R.id.fragContainer, nowPlayingFrag)
+                        .commit()
+                }
+            }
+        } else {
+
         }
 
     }
