@@ -20,8 +20,7 @@
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/towm1204/dotify/OgMainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/towm1204/dotify/OgMainActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/towm1204/dotify/fragments/NowPlayingFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/towm1204/dotify/fragments/NowPlayingFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/towm1204/dotify/fragments/SongListFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/towm1204/dotify/fragments/SongListFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_now_playing.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_now_playing.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

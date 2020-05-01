@@ -23,6 +23,15 @@ class OgMainActivity : AppCompatActivity(), OnSongClickListener {
         setContentView(R.layout.activity_og_main)
 
         val songListFragment = getSongListFragment()
+        val nowPlayingFragment: NowPlayingFragment? = getNowPlayingFragment()
+
+        // make sure to check back stack to see if we want to put up button up
+        if (supportFragmentManager.backStackEntryCount > 1) {
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        }
+
+        // if there is no existing songListFragment create a new fragment
+        // else we just just update our current song
         if (songListFragment == null) {
             clMiniPlayer.visibility = View.VISIBLE
             songListFrag = SongListFragment()
@@ -33,22 +42,29 @@ class OgMainActivity : AppCompatActivity(), OnSongClickListener {
             songListFrag?.arguments = songListArgs
             supportFragmentManager
                 .beginTransaction()
+                .addToBackStack(SongListFragment.TAG)
                 .add(R.id.fragContainer, songListFrag!!, SongListFragment.TAG)
                 .commit()
         } else {
+            // get currentSong from savedInstanceState
             with(savedInstanceState) {
                 currentSong = this?.getParcelable(OUT_SONG)
             }
             tvMiniPlayerText.text = currentSong?.title + " - " + currentSong?.artist
-            clMiniPlayer.visibility = View.VISIBLE
+            // if we on the nowPlaying fragment when we recreate we don't show the miniplayer
+            if (nowPlayingFragment == null) {
+                clMiniPlayer.visibility = View.VISIBLE
+            }
             songListFrag = songListFragment
         }
 
-        // doesn't work right now. Could try songListFrag and currentSongState saving it in savedInstantState so that we can just reassign
+        // shuffle onclick listener
         btnShuffle.setOnClickListener {
             songListFrag?.shuffleSongs()
         }
 
+
+        // mini player on click
         clMiniPlayer.setOnClickListener {
             if (currentSong != null) {
                 clMiniPlayer.visibility = View.GONE
@@ -59,13 +75,40 @@ class OgMainActivity : AppCompatActivity(), OnSongClickListener {
                 nowPlayingFrag.arguments = nowPlayingArgs
                 supportFragmentManager
                     .beginTransaction()
-                    .add(R.id.fragContainer, nowPlayingFrag)
+                    .add(R.id.fragContainer, nowPlayingFrag, NowPlayingFragment.TAG)
+                    .addToBackStack(NowPlayingFragment.TAG)
                     .commit()
+            }
+        }
+
+        // on back stack change
+        supportFragmentManager.addOnBackStackChangedListener {
+            if (supportFragmentManager.backStackEntryCount > 1) {
+                supportActionBar?.setDisplayHomeAsUpEnabled(true)
+            } else {
+                supportActionBar?.setDisplayHomeAsUpEnabled(false)
             }
         }
     }
 
+    override fun onBackPressed() {
+        if (supportFragmentManager.backStackEntryCount > 1) {
+            onSupportNavigateUp()
+        } else {
+            finish()
+        }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        supportFragmentManager.popBackStack()
+        clMiniPlayer.visibility = View.VISIBLE
+        return super.onSupportNavigateUp()
+    }
+
     private fun getSongListFragment() = supportFragmentManager.findFragmentByTag(SongListFragment.TAG) as? SongListFragment
+
+    private fun getNowPlayingFragment() = supportFragmentManager.findFragmentByTag(NowPlayingFragment.TAG) as? NowPlayingFragment
+
 
 
     override fun onSaveInstanceState(outState: Bundle) {
