@@ -1,7 +1,7 @@
 # Dotify
 ### Tow Mokaramanee
 
-Dotify is a top-quality and original music streaming application. The app is still in progress but this is a first proof concept of our android application.
+Dotify is a top-quality and original music streaming application. The app is still in progress but here are some of its basic functionalities. 
 
 **Extra Credits:**
 - When a user presses shuffle, the list should animate the changes using DiffUtil (+1)
