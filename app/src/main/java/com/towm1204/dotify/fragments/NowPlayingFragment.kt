@@ -9,7 +9,7 @@ import android.widget.Toast
 import com.ericchee.songdataprovider.Song
 
 import com.towm1204.dotify.R
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_now_playing.*
 import kotlin.random.Random
 
 /**

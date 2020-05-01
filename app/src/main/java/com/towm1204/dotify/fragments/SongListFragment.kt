@@ -11,7 +11,7 @@ import com.towm1204.dotify.OnSongClickListener
 
 import com.towm1204.dotify.R
 import com.towm1204.dotify.SongListAdapter
-import kotlinx.android.synthetic.main.activity_song_list.*
+import kotlinx.android.synthetic.main.fragment_song_list.*
 
 
 class SongListFragment : Fragment() {
