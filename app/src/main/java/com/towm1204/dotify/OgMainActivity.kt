@@ -8,7 +8,6 @@ import com.ericchee.songdataprovider.SongDataProvider
 import com.towm1204.dotify.fragments.NowPlayingFragment
 import com.towm1204.dotify.fragments.SongListFragment
 import kotlinx.android.synthetic.main.activity_og_main.*
-import kotlinx.android.synthetic.main.fragment_song_list.*
 
 class OgMainActivity : AppCompatActivity(), OnSongClickListener {
     private var currentSong: Song? = null
@@ -55,6 +54,7 @@ class OgMainActivity : AppCompatActivity(), OnSongClickListener {
             if (nowPlayingFragment == null) {
                 clMiniPlayer.visibility = View.VISIBLE
             }
+            // set songListFrag to the one retrieved from savedInstanceState
             songListFrag = songListFragment
         }
 
@@ -92,6 +92,8 @@ class OgMainActivity : AppCompatActivity(), OnSongClickListener {
     }
 
     override fun onBackPressed() {
+        // if there's more than 1 stack -> NowPlaying is Open we call popStack
+        // else just finish the activity -> on SongList Fragment
         if (supportFragmentManager.backStackEntryCount > 1) {
             onSupportNavigateUp()
         } else {

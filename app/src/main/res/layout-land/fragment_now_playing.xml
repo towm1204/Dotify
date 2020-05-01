@@ -5,57 +5,73 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.NowPlayingFragment"
-    android:padding="16dp"
-    android:background="@color/white"
-    android:clickable="true"
-    android:focusable="true" >
+    android:padding="12dp"
+    android:background="@color/white">
+
 
     <ImageView
         android:id="@+id/ivAlbumArt"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:contentDescription="@string/albumArt_contentDescription"
-        app:layout_constraintBottom_toTopOf="@+id/guideline3"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@drawable/eternal_atake_deluxe" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.45" />
 
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline3"
-        tools:text="@string/uzi_title"
+        android:ellipsize="end"
         android:singleLine="true"
-        android:ellipsize="end" />
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/uzi_title" />
+
 
     <TextView
         android:id="@+id/tvArtist"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="@string/uzi_artist"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+        android:layout_marginTop="8dp"
+        android:ellipsize="end"
         android:singleLine="true"
-        android:ellipsize="end"/>
+        app:layout_constraintEnd_toEndOf="@+id/tvTitle"
+        app:layout_constraintHorizontal_bias="0.48"
+        app:layout_constraintStart_toStartOf="@+id/tvTitle"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+        tools:text="@string/uzi_artist" />
 
     <TextView
         android:id="@+id/tvNoPlays"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="@string/plays_placeholder"
-        app:layout_constraintBottom_toTopOf="@+id/guideline4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvArtist" />
+        app:layout_constraintBottom_toTopOf="@+id/guideline2"
+        app:layout_constraintEnd_toEndOf="@+id/tvArtist"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="@+id/tvArtist"
+        app:layout_constraintTop_toBottomOf="@+id/tvArtist"
+        tools:text="@string/plays_placeholder" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5" />
 
     <ImageButton
         android:id="@+id/ibPlayButton"
@@ -64,48 +80,34 @@
         android:background="@null"
         android:contentDescription="@string/play_button_cd"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/ibNextSong"
-        app:layout_constraintStart_toEndOf="@+id/ibPrevSong"
-        app:layout_constraintTop_toTopOf="@+id/guideline4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toTopOf="@+id/guideline2"
+        app:layout_constraintVertical_bias="0.272"
         app:srcCompat="@drawable/ic_play" />
 
     <ImageButton
         android:id="@+id/ibPrevSong"
-        android:contentDescription="@string/prev_song_cd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
         android:background="@null"
+        android:contentDescription="@string/prev_song_cd"
         app:layout_constraintBottom_toBottomOf="@+id/ibPlayButton"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/ibPlayButton"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toTopOf="@+id/ibPlayButton"
         app:srcCompat="@drawable/ic_previous" />
 
     <ImageButton
         android:id="@+id/ibNextSong"
-        android:contentDescription="@string/next_song_cd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
         android:background="@null"
+        android:contentDescription="@string/next_song_cd"
         app:layout_constraintBottom_toBottomOf="@+id/ibPlayButton"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ibPlayButton"
         app:layout_constraintTop_toTopOf="@+id/ibPlayButton"
-        app:layout_constraintVertical_bias="0.488"
         app:srcCompat="@drawable/ic_next" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.6" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.8" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
