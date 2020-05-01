@@ -49,7 +49,10 @@ class OgMainActivity : AppCompatActivity(), OnSongClickListener {
             with(savedInstanceState) {
                 currentSong = this?.getParcelable(OUT_SONG)
             }
-            tvMiniPlayerText.text = currentSong?.title + " - " + currentSong?.artist
+            // for edge case of rotating on startup
+            currentSong?.let {
+                tvMiniPlayerText.text = it.title + " - " + it.artist
+            }
             // if we on the nowPlaying fragment when we recreate we don't show the miniplayer
             if (nowPlayingFragment == null) {
                 clMiniPlayer.visibility = View.VISIBLE
