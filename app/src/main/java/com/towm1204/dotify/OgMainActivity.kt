@@ -34,11 +34,11 @@ class OgMainActivity : AppCompatActivity(), OnSongClickListener {
         if (songListFragment == null) {
             clMiniPlayer.visibility = View.VISIBLE
             songListFrag = SongListFragment()
-            val songListArgs = Bundle().apply {
-                val arrayListOfSongs = ArrayList(SongDataProvider.getAllSongs())
-                this.putParcelableArrayList(SongListFragment.SONG_LIST_ARG, arrayListOfSongs)
-            }
-            songListFrag?.arguments = songListArgs
+//            val songListArgs = Bundle().apply {
+//                val arrayListOfSongs = ArrayList(SongDataProvider.getAllSongs())
+//                this.putParcelableArrayList(SongListFragment.SONG_LIST_ARG, arrayListOfSongs)
+//            }
+//            songListFrag?.arguments = songListArgs
             supportFragmentManager
                 .beginTransaction()
                 .addToBackStack(SongListFragment.TAG)

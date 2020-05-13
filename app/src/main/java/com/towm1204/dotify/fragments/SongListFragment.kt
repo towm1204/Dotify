@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.ericchee.songdataprovider.Song
+import com.towm1204.dotify.DotifyApp
 import com.towm1204.dotify.OnSongClickListener
 
 import com.towm1204.dotify.R
@@ -16,6 +17,7 @@ import kotlinx.android.synthetic.main.fragment_song_list.*
 
 class SongListFragment : Fragment() {
     private lateinit var songAdapter: SongListAdapter
+    private lateinit var dotifyApp: DotifyApp
     private var listOfSongs: MutableList<Song>? = null
     private var onSongClickListener: OnSongClickListener? = null
 
@@ -26,6 +28,12 @@ class SongListFragment : Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
+
+        // get ref to DotifyApp
+        val dotifyApp: DotifyApp = (context.applicationContext as DotifyApp)
+        listOfSongs = dotifyApp.masterSongList.toMutableList()
+
+
         if (context is OnSongClickListener) {
             onSongClickListener = context
         }
@@ -33,10 +41,17 @@ class SongListFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        arguments?.let {
-            this.listOfSongs = it.getParcelableArrayList<Song>(SONG_LIST_ARG)
+//        arguments?.let {
+//            this.listOfSongs = it.getParcelableArrayList<Song>(SONG_LIST_ARG)
+//        }
+        if (savedInstanceState != null) {
+            this.listOfSongs = savedInstanceState.getParcelableArrayList(TAG)
         }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putParcelableArrayList(TAG, ArrayList(listOfSongs!!))
+        super.onSaveInstanceState(outState)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
