@@ -1,26 +1,18 @@
 package com.towm1204.dotify
 
 import android.app.Application
-import android.util.Log
 import com.ericchee.songdataprovider.Song
 import com.ericchee.songdataprovider.SongDataProvider
+import com.towm1204.dotify.manager.MusicManager
 
 class DotifyApp: Application() {
-    lateinit var masterSongList: List<Song>
+    lateinit var musicManager: MusicManager
 
     override fun onCreate() {
         super.onCreate()
-        masterSongList = SongDataProvider.getAllSongs()
+        this.musicManager = MusicManager()
 
     }
 
-    fun updateSongList(newSongList: List<Song>) {
-        masterSongList = newSongList
-    }
 
-    fun masterShuffle() {
-        masterSongList = masterSongList.toMutableList().apply {
-            shuffle()
-        }.toList()
-    }
 }
