@@ -17,7 +17,6 @@ import kotlinx.android.synthetic.main.fragment_song_list.*
 
 class SongListFragment : Fragment() {
     private lateinit var songAdapter: SongListAdapter
-    private lateinit var dotifyApp: DotifyApp
     private var listOfSongs: MutableList<Song>? = null
     private var onSongClickListener: OnSongClickListener? = null
 
@@ -41,12 +40,7 @@ class SongListFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        arguments?.let {
-//            this.listOfSongs = it.getParcelableArrayList<Song>(SONG_LIST_ARG)
-//        }
-        if (savedInstanceState != null) {
-            this.listOfSongs = savedInstanceState.getParcelableArrayList(TAG)
-        }
+
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -71,10 +65,12 @@ class SongListFragment : Fragment() {
     }
 
     fun shuffleSongs() {
-        val shuffledList = listOfSongs?.apply {
-            shuffle()
-        }
+        val shuffledList = listOfSongs?.shuffled()
         rvSongList.scrollToPosition(0)
         songAdapter.change(shuffledList!!)
+
+        // change song in DotifyApp
+        val dotifyApp = (context?.applicationContext as DotifyApp)
+        dotifyApp.updateSongList(shuffledList)
     }
 }

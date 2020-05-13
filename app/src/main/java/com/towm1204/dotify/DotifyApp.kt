@@ -13,4 +13,8 @@ class DotifyApp: Application() {
         masterSongList = SongDataProvider.getAllSongs()
 
     }
+
+    fun updateSongList(newSongList: List<Song>) {
+        masterSongList = newSongList
+    }
 }
