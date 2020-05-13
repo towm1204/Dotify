@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.fragment_song_list.*
 
 class SongListFragment : Fragment() {
     private lateinit var songAdapter: SongListAdapter
-    private var listOfSongs: MutableList<Song>? = null
+    private var listOfSongs: List<Song>? = null
     private var onSongClickListener: OnSongClickListener? = null
 
     companion object {
