@@ -21,7 +21,7 @@ class OgMainActivity : AppCompatActivity(), OnSongClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_og_main)
 
-        val songListFragment = getSongListFragment()
+        val songListFragment: SongListFragment? = getSongListFragment()
         val nowPlayingFragment: NowPlayingFragment? = getNowPlayingFragment()
 
         // make sure to check back stack to see if we want to put up button up
@@ -65,7 +65,6 @@ class OgMainActivity : AppCompatActivity(), OnSongClickListener {
         // mini player on click
         clMiniPlayer.setOnClickListener {
             if (currentSong != null) {
-                clMiniPlayer.visibility = View.GONE
                 val nowPlayingFrag = NowPlayingFragment()
                 val nowPlayingArgs = Bundle().apply {
                     this.putParcelable(NowPlayingFragment.NOW_PLAYING_ARG, currentSong)
@@ -76,6 +75,9 @@ class OgMainActivity : AppCompatActivity(), OnSongClickListener {
                     .add(R.id.fragContainer, nowPlayingFrag, NowPlayingFragment.TAG)
                     .addToBackStack(NowPlayingFragment.TAG)
                     .commit()
+
+                clMiniPlayer.visibility = View.GONE
+
             }
         }
 

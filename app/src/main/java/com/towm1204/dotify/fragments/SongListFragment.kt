@@ -19,6 +19,7 @@ class SongListFragment : Fragment() {
     private lateinit var songAdapter: SongListAdapter
     private var listOfSongs: List<Song>? = null
     private var onSongClickListener: OnSongClickListener? = null
+    private var dotifyApp: DotifyApp? = null
 
     companion object {
         const val SONG_LIST_ARG = "song_list_arg"
@@ -29,9 +30,7 @@ class SongListFragment : Fragment() {
         super.onAttach(context)
 
         // get ref to DotifyApp
-        val dotifyApp: DotifyApp = (context.applicationContext as DotifyApp)
-        listOfSongs = dotifyApp.masterSongList.toMutableList()
-
+        dotifyApp = (context.applicationContext as DotifyApp)
 
         if (context is OnSongClickListener) {
             onSongClickListener = context
@@ -40,6 +39,8 @@ class SongListFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // instantiate listOfSong else just an empty mutable list
+        listOfSongs = dotifyApp?.masterSongList?.toMutableList() ?: mutableListOf()
 
     }
 
@@ -70,7 +71,6 @@ class SongListFragment : Fragment() {
         songAdapter.change(shuffledList!!)
 
         // change song in DotifyApp
-        val dotifyApp = (context?.applicationContext as DotifyApp)
-        dotifyApp.updateSongList(shuffledList)
+        dotifyApp?.updateSongList(shuffledList)
     }
 }
