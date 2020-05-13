@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.fragment_song_list.*
 
 class SongListFragment : Fragment() {
     private lateinit var songAdapter: SongListAdapter
-    private var listOfSongs: List<Song>? = null
+    private lateinit var listOfSongs: List<Song>
     private var onSongClickListener: OnSongClickListener? = null
     private var dotifyApp: DotifyApp? = null
 
@@ -66,11 +66,9 @@ class SongListFragment : Fragment() {
     }
 
     fun shuffleSongs() {
-        val shuffledList = listOfSongs?.shuffled()
         rvSongList.scrollToPosition(0)
-        songAdapter.change(shuffledList!!)
-
-        // change song in DotifyApp
-        dotifyApp?.updateSongList(shuffledList)
+        dotifyApp?.masterShuffle()
+        listOfSongs = dotifyApp?.masterSongList!!
+        songAdapter.change(listOfSongs)
     }
 }

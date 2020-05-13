@@ -17,4 +17,10 @@ class DotifyApp: Application() {
     fun updateSongList(newSongList: List<Song>) {
         masterSongList = newSongList
     }
+
+    fun masterShuffle() {
+        masterSongList = masterSongList.toMutableList().apply {
+            shuffle()
+        }.toList()
+    }
 }
