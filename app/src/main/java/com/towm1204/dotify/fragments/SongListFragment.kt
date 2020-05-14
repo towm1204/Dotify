@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.ericchee.songdataprovider.Song
 import com.towm1204.dotify.DotifyApp
-import com.towm1204.dotify.OnSongClickListener
+import com.towm1204.dotify.interfaces.OnSongClickListener
 
 import com.towm1204.dotify.R
 import com.towm1204.dotify.SongListAdapter
@@ -18,7 +18,6 @@ import kotlinx.android.synthetic.main.fragment_song_list.*
 
 class SongListFragment : Fragment() {
     private lateinit var songAdapter: SongListAdapter
-    private lateinit var listOfSongs: List<Song>
     private lateinit var musicManager: MusicManager
     private var onSongClickListener: OnSongClickListener? = null
 
@@ -38,13 +37,6 @@ class SongListFragment : Fragment() {
         }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        // instantiate listOfSong else just an empty mutable list
-        listOfSongs = musicManager.masterSongList.toMutableList()
-
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_song_list, container, false)
@@ -53,7 +45,7 @@ class SongListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        songAdapter  = SongListAdapter(listOfSongs)
+        songAdapter  = SongListAdapter(musicManager.masterSongList)
         songAdapter.onSongClickListener = { someSong: Song ->
             onSongClickListener?.onSongClicked(someSong)
         }
@@ -64,7 +56,6 @@ class SongListFragment : Fragment() {
     fun shuffleSongs() {
         rvSongList.scrollToPosition(0)
         musicManager.masterShuffle()
-        listOfSongs = musicManager.masterSongList
-        songAdapter.change(listOfSongs)
+        songAdapter.change(musicManager.masterSongList)
     }
 }

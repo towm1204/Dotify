@@ -6,11 +6,15 @@ import android.view.View
 import com.ericchee.songdataprovider.Song
 import com.towm1204.dotify.fragments.NowPlayingFragment
 import com.towm1204.dotify.fragments.SongListFragment
+import com.towm1204.dotify.interfaces.OnSongClickListener
+import com.towm1204.dotify.manager.ApiManager
 import com.towm1204.dotify.manager.MusicManager
 import kotlinx.android.synthetic.main.activity_og_main.*
 
-class OgMainActivity : AppCompatActivity(), OnSongClickListener {
+class OgMainActivity : AppCompatActivity(),
+    OnSongClickListener {
     private lateinit var musicManager: MusicManager
+    private lateinit var apiManager: ApiManager
     private var songListFrag: SongListFragment? = null
 
     companion object {
@@ -25,8 +29,10 @@ class OgMainActivity : AppCompatActivity(), OnSongClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_og_main)
 
-        // initialize music Manager
-        musicManager = (application as DotifyApp).musicManager
+        // initialize music Manager and api manager
+        val dotifyApp = (application as DotifyApp)
+        musicManager = dotifyApp.musicManager
+        apiManager = dotifyApp.apiManager
 
         val songListFragment: SongListFragment? = getSongListFragment()
         val nowPlayingFragment: NowPlayingFragment? = getNowPlayingFragment()
@@ -83,6 +89,12 @@ class OgMainActivity : AppCompatActivity(), OnSongClickListener {
                 clMiniPlayer.visibility = View.GONE
             }
         }
+
+        // User info button on click
+        btnUserInfo.setOnClickListener {
+
+        }
+
 
         // on back stack change
         supportFragmentManager.addOnBackStackChangedListener {

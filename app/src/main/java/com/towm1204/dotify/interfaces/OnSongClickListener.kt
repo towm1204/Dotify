@@ -1,4 +1,4 @@
-package com.towm1204.dotify
+package com.towm1204.dotify.interfaces
 
 import com.ericchee.songdataprovider.Song
 
