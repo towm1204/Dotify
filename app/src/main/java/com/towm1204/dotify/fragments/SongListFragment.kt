@@ -41,7 +41,7 @@ class SongListFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // instantiate listOfSong else just an empty mutable list
-        listOfSongs = musicManager.masterSongList.toMutableList() ?: mutableListOf()
+        listOfSongs = musicManager.masterSongList.toMutableList()
 
     }
 
