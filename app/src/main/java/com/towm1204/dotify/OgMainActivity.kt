@@ -4,22 +4,29 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.ericchee.songdataprovider.Song
-import com.ericchee.songdataprovider.SongDataProvider
 import com.towm1204.dotify.fragments.NowPlayingFragment
 import com.towm1204.dotify.fragments.SongListFragment
+import com.towm1204.dotify.manager.MusicManager
 import kotlinx.android.synthetic.main.activity_og_main.*
 
 class OgMainActivity : AppCompatActivity(), OnSongClickListener {
-    private var currentSong: Song? = null
+    private lateinit var musicManager: MusicManager
     private var songListFrag: SongListFragment? = null
 
     companion object {
         const val OUT_SONG = "out_song"
     }
 
+    private fun getSongListFragment() = supportFragmentManager.findFragmentByTag(SongListFragment.TAG) as? SongListFragment
+
+    private fun getNowPlayingFragment() = supportFragmentManager.findFragmentByTag(NowPlayingFragment.TAG) as? NowPlayingFragment
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_og_main)
+
+        // initialize music Manager
+        musicManager = (application as DotifyApp).musicManager
 
         val songListFragment: SongListFragment? = getSongListFragment()
         val nowPlayingFragment: NowPlayingFragment? = getNowPlayingFragment()
@@ -40,19 +47,15 @@ class OgMainActivity : AppCompatActivity(), OnSongClickListener {
                 .add(R.id.fragContainer, songListFrag!!, SongListFragment.TAG)
                 .commit()
         } else {
-            // get currentSong from savedInstanceState
-            with(savedInstanceState) {
-                currentSong = this?.getParcelable(OUT_SONG)
-            }
             // for edge case of rotating on startup
-            currentSong?.let {
-                tvMiniPlayerText.text = it.title + " - " + it.artist
+            musicManager.getCurSong()?.let {
+                tvMiniPlayerText.text = """${it.title} - ${it.artist}"""
             }
             // if we on the nowPlaying fragment when we recreate we don't show the miniplayer
             if (nowPlayingFragment == null) {
                 clMiniPlayer.visibility = View.VISIBLE
             }
-            // set songListFrag to the one retrieved from savedInstanceState
+            // set songListFrag to the one retrieved from retrieved from last state
             songListFrag = songListFragment
         }
 
@@ -64,10 +67,11 @@ class OgMainActivity : AppCompatActivity(), OnSongClickListener {
 
         // mini player on click
         clMiniPlayer.setOnClickListener {
-            if (currentSong != null) {
+            // if current Song not null
+            musicManager.getCurSong()?.let {
                 val nowPlayingFrag = NowPlayingFragment()
                 val nowPlayingArgs = Bundle().apply {
-                    this.putParcelable(NowPlayingFragment.NOW_PLAYING_ARG, currentSong)
+                    this.putParcelable(NowPlayingFragment.NOW_PLAYING_ARG, it)
                 }
                 nowPlayingFrag.arguments = nowPlayingArgs
                 supportFragmentManager
@@ -77,7 +81,6 @@ class OgMainActivity : AppCompatActivity(), OnSongClickListener {
                     .commit()
 
                 clMiniPlayer.visibility = View.GONE
-
             }
         }
 
@@ -107,20 +110,11 @@ class OgMainActivity : AppCompatActivity(), OnSongClickListener {
         return super.onSupportNavigateUp()
     }
 
-    private fun getSongListFragment() = supportFragmentManager.findFragmentByTag(SongListFragment.TAG) as? SongListFragment
-
-    private fun getNowPlayingFragment() = supportFragmentManager.findFragmentByTag(NowPlayingFragment.TAG) as? NowPlayingFragment
-
-
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        outState.putParcelable(OUT_SONG, currentSong)
-        super.onSaveInstanceState(outState)
-    }
-
     override fun onSongClicked(song: Song) {
-        currentSong = song
-        tvMiniPlayerText.text = currentSong?.title + " - " + currentSong?.artist
+        musicManager.setCurSong(song)
+        musicManager.getCurSong()?.let {
+            tvMiniPlayerText.text = """${it.title} - ${it.artist}"""
+        }
     }
 
 

@@ -11,8 +11,5 @@ class DotifyApp: Application() {
     override fun onCreate() {
         super.onCreate()
         this.musicManager = MusicManager()
-
     }
-
-
 }
