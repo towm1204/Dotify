@@ -4,12 +4,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import com.ericchee.songdataprovider.Song
 import com.towm1204.dotify.fragments.NowPlayingFragment
 import com.towm1204.dotify.fragments.SongListFragment
 import com.towm1204.dotify.interfaces.OnSongClickListener
 import com.towm1204.dotify.manager.ApiManager
 import com.towm1204.dotify.manager.MusicManager
+import com.towm1204.dotify.models.User
 import kotlinx.android.synthetic.main.activity_og_main.*
 
 class OgMainActivity : AppCompatActivity(),
@@ -93,8 +95,9 @@ class OgMainActivity : AppCompatActivity(),
 
         // User info button on click
         btnUserInfo.setOnClickListener {
-            apiManager.getUserInfo({ user -> Log.i("Toww", user.firstName)})
-            Log.i("Toww", "hi")
+            apiManager.getUserInfo({ user ->
+                Toast.makeText(this,"User: ${user.username}", Toast.LENGTH_SHORT).show()
+            })
         }
 
 
