@@ -1,5 +1,6 @@
 package com.towm1204.dotify
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -96,9 +97,12 @@ class OgMainActivity : AppCompatActivity(),
         // User info button on click
         btnUserInfo.setOnClickListener {
             apiManager.getUserInfo({ user ->
-                Toast.makeText(this,"User: ${user.username}", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, UserInfoActivity::class.java)
+                intent.putExtra("user_key", user)
+                startActivity(intent)
+
             }, { t->
-                Toast.makeText(this, "Error: $t", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Error: $t", Toast.LENGTH_LONG).show()
             })
         }
 
