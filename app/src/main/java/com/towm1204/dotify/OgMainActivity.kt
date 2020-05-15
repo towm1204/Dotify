@@ -2,6 +2,7 @@ package com.towm1204.dotify
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import com.ericchee.songdataprovider.Song
 import com.towm1204.dotify.fragments.NowPlayingFragment
@@ -92,7 +93,8 @@ class OgMainActivity : AppCompatActivity(),
 
         // User info button on click
         btnUserInfo.setOnClickListener {
-
+            apiManager.getUserInfo({ user -> Log.i("Toww", user.firstName)})
+            Log.i("Toww", "hi")
         }
 
 
