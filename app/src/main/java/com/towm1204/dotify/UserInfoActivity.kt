@@ -3,6 +3,7 @@ package com.towm1204.dotify
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.squareup.picasso.Picasso
 import com.towm1204.dotify.models.User
 import kotlinx.android.synthetic.main.activity_og_main.*
 import kotlinx.android.synthetic.main.activity_user_info.*
@@ -25,8 +26,14 @@ class UserInfoActivity : AppCompatActivity() {
         } else {
             tvHasNose.text = "Has No Nose"
         }
-       // Picasso.get().load("http://i.imgur.com/DvpvklR.png").into(imageView)
 
+        Picasso.get().load(curUser.profilePicURL).into(ivUserAvatar)
 
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        finish()
+        return super.onSupportNavigateUp()
     }
 }
