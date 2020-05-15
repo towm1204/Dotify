@@ -1,8 +1,10 @@
 package com.towm1204.dotify.manager
 
 import android.util.Log
+import com.ericchee.songdataprovider.Song
 import com.towm1204.dotify.interfaces.DotifyService
 import com.towm1204.dotify.models.Artist
+import com.towm1204.dotify.models.MusicLibrary
 import com.towm1204.dotify.models.User
 import retrofit2.Call
 import retrofit2.Callback
@@ -28,14 +30,17 @@ class ApiManager(private val dotifyService: DotifyService) {
 
     }
 
-    fun getArtists() {
-        dotifyService.getAllArtist().enqueue(object:Callback<List<Artist>>{
-            override fun onResponse(call: Call<List<Artist>>, response: Response<List<Artist>>) {
-                TODO("Not yet implemented")
+    fun getAllSongs(onSongsReady: (List<Song>) -> Unit, onError: ((String) -> Unit)? = null) {
+        dotifyService.getSongs().enqueue(object:Callback<MusicLibrary>{
+            override fun onResponse(call: Call<MusicLibrary>, response: Response<MusicLibrary>) {
+                val listOfSongs = response.body()?.songs
+                listOfSongs?.let {
+                    onSongsReady(it)
+                }
             }
 
-            override fun onFailure(call: Call<List<Artist>>, t: Throwable) {
-                TODO("Not yet implemented")
+            override fun onFailure(call: Call<MusicLibrary>, t: Throwable) {
+                onError?.invoke(t.message ?: "Unknown")
             }
 
         })

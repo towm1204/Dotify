@@ -6,7 +6,7 @@ import com.ericchee.songdataprovider.SongDataProvider
 import com.towm1204.dotify.interfaces.SongChangeListener
 
 class MusicManager {
-    var masterSongList: List<Song> = SongDataProvider.getAllSongs()
+    var masterSongList: List<Song> = listOf()
     var currentSong: Song? = null
     var songChangeListener: SongChangeListener? = null
 

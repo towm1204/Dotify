@@ -42,7 +42,26 @@ class OgMainActivity : AppCompatActivity(),
         // initialize OGMain as musicManager's SongChangeListener
         musicManager.songChangeListener = this
 
+        // fetch songList from internet yo, only if saved instance state isn't there, i.e.
+        // on startup
+        if (savedInstanceState == null) {
+            apiManager.getAllSongs({ listOfSongs ->
+                for (song in listOfSongs) {
+                    Log.i("Toww", song.toString())
+                }
+                musicManager.masterSongList = listOfSongs
+                startUp()
+            }, { t ->
+                Toast.makeText(this, "Error: $t", Toast.LENGTH_LONG).show()
 
+            })
+        } else {
+            startUp()
+        }
+    }
+
+    // psuedo onCreate after fetch
+    private fun startUp() {
         val songListFragment: SongListFragment? = getSongListFragment()
         val nowPlayingFragment: NowPlayingFragment? = getNowPlayingFragment()
 
@@ -101,12 +120,11 @@ class OgMainActivity : AppCompatActivity(),
 
         // User info button on click
         btnUserInfo.setOnClickListener {
-            apiManager.getUserInfo({ user ->
+            apiManager.getUserInfo({
                 val intent = Intent(this, UserInfoActivity::class.java)
-                intent.putExtra("user_key", user)
+                intent.putExtra("user_key", it)
                 startActivity(intent)
-
-            }, { t->
+            }, { t ->
                 Toast.makeText(this, "Error: $t", Toast.LENGTH_LONG).show()
             })
         }
@@ -120,6 +138,7 @@ class OgMainActivity : AppCompatActivity(),
                 supportActionBar?.setDisplayHomeAsUpEnabled(false)
             }
         }
+
     }
 
     override fun onBackPressed() {

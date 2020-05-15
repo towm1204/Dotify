@@ -18,9 +18,9 @@ class UserInfoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_info)
 
-        val curUser = intent.getParcelableExtra<User>(USER_KEY)
+        val curUser = intent.getParcelableExtra<User>(USER_KEY)!!
         tvUserName.text = curUser?.username
-        tvFirstLastName.text = "${curUser?.firstName} ${curUser?.lastName}"
+        tvFirstLastName.text = "${curUser.firstName} ${curUser.lastName}"
         if (curUser.hasNose) {
             tvHasNose.text = "Has Nose"
         } else {

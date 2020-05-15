@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.ericchee.songdataprovider.Song
+import com.squareup.picasso.Picasso
 import com.towm1204.dotify.DotifyApp
 
 import com.towm1204.dotify.R
@@ -47,6 +48,7 @@ class NowPlayingFragment : Fragment() {
 
     private fun updateSongView() {
         musicManager.getCurSong()?.let {
+
             ivAlbumArt.setImageResource(it.largeImageID)
             tvArtist.text = it.artist
             tvTitle.text = it.title
