@@ -9,18 +9,19 @@ import retrofit2.Response
 
 class ApiManager(private val dotifyService: DotifyService) {
 
-    fun getUserInfo(onUserReady: (User) -> Unit, onError: (() -> Unit)? = null) {
+    fun getUserInfo(onUserReady: (User) -> Unit, onError: ((String) -> Unit)? = null) {
         dotifyService.getUser().enqueue(object:Callback<User>{
             override fun onResponse(call: Call<User>, response: Response<User>) {
                 val user = response.body()
                 if (user != null) {
                     onUserReady(user)
+                } else {
+                    onError?.invoke("${response.code()} ${response.message()}")
                 }
             }
 
             override fun onFailure(call: Call<User>, t: Throwable) {
-                Log.i("Toww", t.message)
-                onError?.invoke()
+                onError?.invoke(t.message ?: "Unknown")
             }
         })
 

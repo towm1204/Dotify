@@ -97,6 +97,8 @@ class OgMainActivity : AppCompatActivity(),
         btnUserInfo.setOnClickListener {
             apiManager.getUserInfo({ user ->
                 Toast.makeText(this,"User: ${user.username}", Toast.LENGTH_SHORT).show()
+            }, { t->
+                Toast.makeText(this, "Error: $t", Toast.LENGTH_SHORT).show()
             })
         }
 
