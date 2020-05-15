@@ -1,5 +1,6 @@
 package com.towm1204.dotify.manager
 
+import android.widget.Toast
 import com.ericchee.songdataprovider.Song
 import com.ericchee.songdataprovider.SongDataProvider
 import com.towm1204.dotify.interfaces.SongChangeListener
@@ -31,6 +32,15 @@ class MusicManager {
     }
 
     fun prevTrack() {
+        val index = masterSongList.indexOf(currentSong!!)
+        if (index > 0) {
+            setCurSong(masterSongList[index -1])
+        } else {
+            setCurSong(masterSongList[masterSongList.lastIndex])
+        }
+
+        songChangeListener?.updateCurSong()
+
 
     }
 

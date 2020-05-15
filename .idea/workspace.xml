@@ -20,9 +20,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/towm1204/dotify/OgMainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/towm1204/dotify/OgMainActivity.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/towm1204/dotify/fragments/NowPlayingFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/towm1204/dotify/fragments/NowPlayingFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/towm1204/dotify/manager/ApiManager.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/towm1204/dotify/manager/ApiManager.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/towm1204/dotify/manager/MusicManager.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/towm1204/dotify/manager/MusicManager.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/towm1204/dotify/models/Artist.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/towm1204/dotify/models/Artist.kt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -75,7 +73,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
-    <property name="DEBUGGABLE_DEVICE" value="emulator-5554" />
+    <property name="DEBUGGABLE_DEVICE" value="Pixel_3_API_29 [emulator-5554]" />
     <property name="DEBUGGABLE_PROCESS" value="com.towm1204.dotify" />
     <property name="DEBUGGER_ID" value="Auto" />
     <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="Pixel_3_API_29" />

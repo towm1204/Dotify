@@ -151,7 +151,6 @@ class OgMainActivity : AppCompatActivity(),
         }
     }
 
-
 }
 
 

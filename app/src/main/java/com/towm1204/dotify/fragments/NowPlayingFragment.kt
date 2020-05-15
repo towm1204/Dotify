@@ -69,7 +69,8 @@ class NowPlayingFragment : Fragment() {
     }
 
     private fun prevClicked() {
-        Toast.makeText(context, "Skipping to next track", Toast.LENGTH_SHORT).show()
+        musicManager.prevTrack()
+        updateSongView()
     }
 
 }
