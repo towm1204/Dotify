@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
-import com.ericchee.songdataprovider.Song
+import com.towm1204.dotify.models.Song
 import com.towm1204.dotify.fragments.NowPlayingFragment
 import com.towm1204.dotify.fragments.SongListFragment
 import com.towm1204.dotify.interfaces.OnSongClickListener

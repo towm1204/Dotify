@@ -1,7 +1,7 @@
 package com.towm1204.dotify
 
 import androidx.recyclerview.widget.DiffUtil
-import com.ericchee.songdataprovider.Song
+import com.towm1204.dotify.models.Song
 
 class SongDiffCallback(
     private val oldSongList: List<Song>, private val newSongList: List<Song>) : DiffUtil.Callback() {

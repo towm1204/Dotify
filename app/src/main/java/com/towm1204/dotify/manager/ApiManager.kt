@@ -1,9 +1,7 @@
 package com.towm1204.dotify.manager
 
-import android.util.Log
-import com.ericchee.songdataprovider.Song
+import com.towm1204.dotify.models.Song
 import com.towm1204.dotify.interfaces.DotifyService
-import com.towm1204.dotify.models.Artist
 import com.towm1204.dotify.models.MusicLibrary
 import com.towm1204.dotify.models.User
 import retrofit2.Call

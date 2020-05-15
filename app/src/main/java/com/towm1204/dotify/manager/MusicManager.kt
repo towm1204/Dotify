@@ -1,8 +1,6 @@
 package com.towm1204.dotify.manager
 
-import android.widget.Toast
-import com.ericchee.songdataprovider.Song
-import com.ericchee.songdataprovider.SongDataProvider
+import com.towm1204.dotify.models.Song
 import com.towm1204.dotify.interfaces.SongChangeListener
 
 class MusicManager {

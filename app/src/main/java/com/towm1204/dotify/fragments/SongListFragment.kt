@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.ericchee.songdataprovider.Song
+import com.towm1204.dotify.models.Song
 import com.towm1204.dotify.DotifyApp
 import com.towm1204.dotify.interfaces.OnSongClickListener
 
