@@ -1,20 +1,21 @@
 package com.towm1204.dotify
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
-import com.towm1204.dotify.models.Song
+import androidx.appcompat.app.AppCompatActivity
+import com.squareup.picasso.Picasso
 import com.towm1204.dotify.fragments.NowPlayingFragment
 import com.towm1204.dotify.fragments.SongListFragment
 import com.towm1204.dotify.interfaces.OnSongClickListener
 import com.towm1204.dotify.interfaces.SongChangeListener
 import com.towm1204.dotify.manager.ApiManager
 import com.towm1204.dotify.manager.MusicManager
-import com.towm1204.dotify.models.User
+import com.towm1204.dotify.models.Song
 import kotlinx.android.synthetic.main.activity_og_main.*
+
 
 class OgMainActivity : AppCompatActivity(),
     OnSongClickListener, SongChangeListener {
@@ -46,14 +47,11 @@ class OgMainActivity : AppCompatActivity(),
         // on startup
         if (savedInstanceState == null) {
             apiManager.getAllSongs({ listOfSongs ->
-                for (song in listOfSongs) {
-                    Log.i("Toww", song.toString())
-                }
+                // pre fetch small image url
                 musicManager.masterSongList = listOfSongs
                 startUp()
             }, { t ->
                 Toast.makeText(this, "Error: $t", Toast.LENGTH_LONG).show()
-
             })
         } else {
             startUp()
@@ -62,6 +60,8 @@ class OgMainActivity : AppCompatActivity(),
 
     // psuedo onCreate after fetch
     private fun startUp() {
+        clProgressBarContainer.visibility = View.GONE
+
         val songListFragment: SongListFragment? = getSongListFragment()
         val nowPlayingFragment: NowPlayingFragment? = getNowPlayingFragment()
 

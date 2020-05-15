@@ -7,6 +7,9 @@
     tools:context=".UserInfoActivity"
     android:padding="16dp">
 
+
+
+
     <ImageView
         android:id="@+id/ivUserAvatar"
         android:layout_width="0dp"
