@@ -10,13 +10,14 @@ import com.ericchee.songdataprovider.Song
 import com.towm1204.dotify.fragments.NowPlayingFragment
 import com.towm1204.dotify.fragments.SongListFragment
 import com.towm1204.dotify.interfaces.OnSongClickListener
+import com.towm1204.dotify.interfaces.SongChangeListener
 import com.towm1204.dotify.manager.ApiManager
 import com.towm1204.dotify.manager.MusicManager
 import com.towm1204.dotify.models.User
 import kotlinx.android.synthetic.main.activity_og_main.*
 
 class OgMainActivity : AppCompatActivity(),
-    OnSongClickListener {
+    OnSongClickListener, SongChangeListener {
     private lateinit var musicManager: MusicManager
     private lateinit var apiManager: ApiManager
     private var songListFrag: SongListFragment? = null
@@ -37,6 +38,10 @@ class OgMainActivity : AppCompatActivity(),
         val dotifyApp = (application as DotifyApp)
         musicManager = dotifyApp.musicManager
         apiManager = dotifyApp.apiManager
+
+        // initialize OGMain as musicManager's SongChangeListener
+        musicManager.songChangeListener = this
+
 
         val songListFragment: SongListFragment? = getSongListFragment()
         val nowPlayingFragment: NowPlayingFragment? = getNowPlayingFragment()
@@ -135,6 +140,12 @@ class OgMainActivity : AppCompatActivity(),
 
     override fun onSongClicked(song: Song) {
         musicManager.setCurSong(song)
+        musicManager.getCurSong()?.let {
+            tvMiniPlayerText.text = """${it.title} - ${it.artist}"""
+        }
+    }
+
+    override fun updateCurSong() {
         musicManager.getCurSong()?.let {
             tvMiniPlayerText.text = """${it.title} - ${it.artist}"""
         }

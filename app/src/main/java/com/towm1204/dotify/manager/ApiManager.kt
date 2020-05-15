@@ -2,6 +2,7 @@ package com.towm1204.dotify.manager
 
 import android.util.Log
 import com.towm1204.dotify.interfaces.DotifyService
+import com.towm1204.dotify.models.Artist
 import com.towm1204.dotify.models.User
 import retrofit2.Call
 import retrofit2.Callback
@@ -25,6 +26,19 @@ class ApiManager(private val dotifyService: DotifyService) {
             }
         })
 
+    }
+
+    fun getArtists() {
+        dotifyService.getAllArtist().enqueue(object:Callback<List<Artist>>{
+            override fun onResponse(call: Call<List<Artist>>, response: Response<List<Artist>>) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onFailure(call: Call<List<Artist>>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+
+        })
     }
 
 }

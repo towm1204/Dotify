@@ -52,14 +52,6 @@ class NowPlayingFragment : Fragment() {
             tvTitle.text = it.title
         }
 
-//        if (plays != null) {
-//            tvNoPlays.text = "$plays plays"
-//        }
-
-//        ibPlayButton.setOnClickListener {
-//            playClicked()
-//        }
-
         ibPrevSong.setOnClickListener {
             prevClicked()
         }
@@ -69,18 +61,14 @@ class NowPlayingFragment : Fragment() {
         }
     }
 
-//    private fun playClicked() {
-//        if (plays != null) {
-//            plays = plays!! + 1
-//        }
-//        updateSongView()
-//    }
-
-    private fun prevClicked() {
-        Toast.makeText(context, "Skipping to previous track", Toast.LENGTH_SHORT).show()
-    }
 
     private fun nextClicked() {
+        musicManager.nextTrack()
+        // update view
+        updateSongView()
+    }
+
+    private fun prevClicked() {
         Toast.makeText(context, "Skipping to next track", Toast.LENGTH_SHORT).show()
     }
 
